@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://kz.processing.cnp.oneclick.merchant_ws/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ax25="http://beans.oneclick.cnp.processing.kz/xsd" xmlns:tns="http://kz.processing.cnp.oneclick.merchant/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax22="http://beans.common.cnp.processing.kz/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://beans.merchant.oneclick.cnp.processing.kz/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://kz.processing.cnp.oneclick.merchant/">
+    <wsdl:documentation>CNPOneClickMerchantWebService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax26="http://beans.common.cnp.processing.kz/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://beans.oneclick.cnp.processing.kz/xsd">
+            <xs:import namespace="http://beans.common.cnp.processing.kz/xsd"/>
+            <xs:complexType name="PrivateOfficeUrlRequest">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalInformation" nillable="true" type="ax26:AdditionalInformation"/>
+                    <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cardId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="currencyCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="goodsList" nillable="true" type="ax26:GoodsItem"/>
+                    <xs:element minOccurs="0" name="iinbin" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="languageCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantLocalDateTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="paymentTarget" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnUrl" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="terminalId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="userLogin" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PrivateOfficeUrlResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="errorDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="redirectURL" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="success" nillable="true" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StoredCard">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cardId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="pan" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userId" nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ExtendedPaymentStatus">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="bankCallCenter" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="bankName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="bankRrn" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cardIssuerCountry" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="maskedCardNumber" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://beans.common.cnp.processing.kz/xsd">
+            <xs:complexType name="AdditionalInformation">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="key" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GoodsItem">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="currencyCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="merchantsGoodsID" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nameOfGoods" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StoredTransactionStatusCode">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalInformation" nillable="true" type="ax22:AdditionalInformation"/>
+                    <xs:element minOccurs="0" name="amountAuthorised" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="amountRefunded" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="amountRequested" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="amountSettled" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="authCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="bankRRN" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="goods" nillable="true" type="ax22:GoodsItem"/>
+                    <xs:element minOccurs="0" name="issuerBank" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantLocalDateTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantOnlineAddress" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="purchaserEmail" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="purchaserName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="purchaserPhone" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rspCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rspCodeDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="sinkNode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transactionCurrencyCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transactionStatus" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax28="http://beans.common.cnp.processing.kz/xsd" xmlns:ax27="http://beans.oneclick.cnp.processing.kz/xsd" xmlns:ax24="http://beans.merchant.oneclick.cnp.processing.kz/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://kz.processing.cnp.oneclick.merchant_ws/xsd">
+            <xs:import namespace="http://beans.merchant.oneclick.cnp.processing.kz/xsd"/>
+            <xs:import namespace="http://beans.oneclick.cnp.processing.kz/xsd"/>
+            <xs:import namespace="http://beans.common.cnp.processing.kz/xsd"/>
+            <xs:element name="cashout">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="details" nillable="true" type="ax24:PaymentRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cashoutResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:PaymentResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getExtendedCardStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="cardId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getExtendedCardStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:ExtendedCardStatus"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteRegistration">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteRegistrationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteCardRegistration">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="cardId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteCardRegistrationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPrivateOfficeUrl">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true" type="ax27:PrivateOfficeUrlRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPrivateOfficeUrlResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax27:PrivateOfficeUrlResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="storeCardByCustomerReference">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="storeCardByCustomerReferenceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax27:StoredCard"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="completeCardRegistration">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="cardId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="testAmount" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="completeCardRegistrationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCardStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="cardId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCardStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:CardStatus"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pay">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="details" nillable="true" type="ax24:PaymentRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="payResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:PaymentResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="completePayment">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="transactionSuccess" type="xs:boolean"/>
+                        <xs:element minOccurs="0" name="overrideAmount" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="completePaymentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPaymentStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPaymentStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax28:StoredTransactionStatusCode"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getExtendedPaymentStatus">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getExtendedPaymentStatusResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax27:ExtendedPaymentStatus"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDeclineDescription">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="language" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDeclineDescriptionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:DeclineDescription"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setAutoPayment">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="userId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="cardId" type="xs:int"/>
+                        <xs:element minOccurs="0" name="paymentTarget" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="enabled" type="xs:boolean"/>
+                        <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="currencyCode" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="period" type="xs:int"/>
+                        <xs:element minOccurs="0" name="periodDate" type="xs:int"/>
+                        <xs:element minOccurs="0" name="autoPaymentId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="setAutoPaymentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:AutoPaymentResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="startCardRegistration">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="registration" nillable="true" type="ax24:RegistrationRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="startCardRegistrationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:RegistrationResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:ax23="http://beans.common.cnp.processing.kz/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://beans.merchant.oneclick.cnp.processing.kz/xsd">
+            <xs:import namespace="http://beans.common.cnp.processing.kz/xsd"/>
+            <xs:complexType name="PaymentRequest">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalInformation" nillable="true" type="ax23:AdditionalInformation"/>
+                    <xs:element minOccurs="0" name="amount" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cardId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="currencyCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="goodsList" nillable="true" type="ax23:GoodsItem"/>
+                    <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantLocalDateTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderNum" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="paymentTarget" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="terminalId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="userLogin" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PaymentResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="customerReference" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="errorDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rspCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="success" nillable="true" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CardStatus">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cardHolder" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cardId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="panMasked" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="uniqueCardId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="userLogin" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ExtendedCardStatus">
+                <xs:complexContent>
+                    <xs:extension base="ax21:CardStatus">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="bin" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="iin" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="testAmountAttempts" nillable="true" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DeclineDescription">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="bankContact" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="bankLink" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="bankName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="responseCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AutoPaymentResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="autoPaymentId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="success" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RegistrationRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="currencyCode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="languageCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnUrl" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="terminalId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userId" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="userLogin" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RegistrationResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="errorCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="errorDescription" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="redirectURL" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="success" nillable="true" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="userId" nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getPrivateOfficeUrlRequest">
+        <wsdl:part name="parameters" element="ns:getPrivateOfficeUrl"/>
+    </wsdl:message>
+    <wsdl:message name="getPrivateOfficeUrlResponse">
+        <wsdl:part name="parameters" element="ns:getPrivateOfficeUrlResponse"/>
+    </wsdl:message>
+    <wsdl:message name="completePaymentRequest">
+        <wsdl:part name="parameters" element="ns:completePayment"/>
+    </wsdl:message>
+    <wsdl:message name="completePaymentResponse">
+        <wsdl:part name="parameters" element="ns:completePaymentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getPaymentStatusRequest">
+        <wsdl:part name="parameters" element="ns:getPaymentStatus"/>
+    </wsdl:message>
+    <wsdl:message name="getPaymentStatusResponse">
+        <wsdl:part name="parameters" element="ns:getPaymentStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="completeCardRegistrationRequest">
+        <wsdl:part name="parameters" element="ns:completeCardRegistration"/>
+    </wsdl:message>
+    <wsdl:message name="completeCardRegistrationResponse">
+        <wsdl:part name="parameters" element="ns:completeCardRegistrationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getCardStatusRequest">
+        <wsdl:part name="parameters" element="ns:getCardStatus"/>
+    </wsdl:message>
+    <wsdl:message name="getCardStatusResponse">
+        <wsdl:part name="parameters" element="ns:getCardStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="payRequest">
+        <wsdl:part name="parameters" element="ns:pay"/>
+    </wsdl:message>
+    <wsdl:message name="payResponse">
+        <wsdl:part name="parameters" element="ns:payResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getDeclineDescriptionRequest">
+        <wsdl:part name="parameters" element="ns:getDeclineDescription"/>
+    </wsdl:message>
+    <wsdl:message name="getDeclineDescriptionResponse">
+        <wsdl:part name="parameters" element="ns:getDeclineDescriptionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cashoutRequest">
+        <wsdl:part name="parameters" element="ns:cashout"/>
+    </wsdl:message>
+    <wsdl:message name="cashoutResponse">
+        <wsdl:part name="parameters" element="ns:cashoutResponse"/>
+    </wsdl:message>
+    <wsdl:message name="startCardRegistrationRequest">
+        <wsdl:part name="parameters" element="ns:startCardRegistration"/>
+    </wsdl:message>
+    <wsdl:message name="startCardRegistrationResponse">
+        <wsdl:part name="parameters" element="ns:startCardRegistrationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="deleteCardRegistrationRequest">
+        <wsdl:part name="parameters" element="ns:deleteCardRegistration"/>
+    </wsdl:message>
+    <wsdl:message name="deleteCardRegistrationResponse">
+        <wsdl:part name="parameters" element="ns:deleteCardRegistrationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getExtendedCardStatusRequest">
+        <wsdl:part name="parameters" element="ns:getExtendedCardStatus"/>
+    </wsdl:message>
+    <wsdl:message name="getExtendedCardStatusResponse">
+        <wsdl:part name="parameters" element="ns:getExtendedCardStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="setAutoPaymentRequest">
+        <wsdl:part name="parameters" element="ns:setAutoPayment"/>
+    </wsdl:message>
+    <wsdl:message name="setAutoPaymentResponse">
+        <wsdl:part name="parameters" element="ns:setAutoPaymentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getExtendedPaymentStatusRequest">
+        <wsdl:part name="parameters" element="ns:getExtendedPaymentStatus"/>
+    </wsdl:message>
+    <wsdl:message name="getExtendedPaymentStatusResponse">
+        <wsdl:part name="parameters" element="ns:getExtendedPaymentStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="storeCardByCustomerReferenceRequest">
+        <wsdl:part name="parameters" element="ns:storeCardByCustomerReference"/>
+    </wsdl:message>
+    <wsdl:message name="storeCardByCustomerReferenceResponse">
+        <wsdl:part name="parameters" element="ns:storeCardByCustomerReferenceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="deleteRegistrationRequest">
+        <wsdl:part name="parameters" element="ns:deleteRegistration"/>
+    </wsdl:message>
+    <wsdl:message name="deleteRegistrationResponse">
+        <wsdl:part name="parameters" element="ns:deleteRegistrationResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CNPOneClickMerchantWebServicePortType">
+        <wsdl:operation name="getPrivateOfficeUrl">
+            <wsdl:input message="tns:getPrivateOfficeUrlRequest" wsaw:Action="urn:getPrivateOfficeUrl"/>
+            <wsdl:output message="tns:getPrivateOfficeUrlResponse" wsaw:Action="urn:getPrivateOfficeUrlResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="completePayment">
+            <wsdl:input message="tns:completePaymentRequest" wsaw:Action="urn:completePayment"/>
+            <wsdl:output message="tns:completePaymentResponse" wsaw:Action="urn:completePaymentResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPaymentStatus">
+            <wsdl:input message="tns:getPaymentStatusRequest" wsaw:Action="urn:getPaymentStatus"/>
+            <wsdl:output message="tns:getPaymentStatusResponse" wsaw:Action="urn:getPaymentStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="completeCardRegistration">
+            <wsdl:input message="tns:completeCardRegistrationRequest" wsaw:Action="urn:completeCardRegistration"/>
+            <wsdl:output message="tns:completeCardRegistrationResponse" wsaw:Action="urn:completeCardRegistrationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCardStatus">
+            <wsdl:input message="tns:getCardStatusRequest" wsaw:Action="urn:getCardStatus"/>
+            <wsdl:output message="tns:getCardStatusResponse" wsaw:Action="urn:getCardStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <wsdl:input message="tns:payRequest" wsaw:Action="urn:pay"/>
+            <wsdl:output message="tns:payResponse" wsaw:Action="urn:payResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDeclineDescription">
+            <wsdl:input message="tns:getDeclineDescriptionRequest" wsaw:Action="urn:getDeclineDescription"/>
+            <wsdl:output message="tns:getDeclineDescriptionResponse" wsaw:Action="urn:getDeclineDescriptionResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cashout">
+            <wsdl:input message="tns:cashoutRequest" wsaw:Action="urn:cashout"/>
+            <wsdl:output message="tns:cashoutResponse" wsaw:Action="urn:cashoutResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="startCardRegistration">
+            <wsdl:input message="tns:startCardRegistrationRequest" wsaw:Action="urn:startCardRegistration"/>
+            <wsdl:output message="tns:startCardRegistrationResponse" wsaw:Action="urn:startCardRegistrationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteCardRegistration">
+            <wsdl:input message="tns:deleteCardRegistrationRequest" wsaw:Action="urn:deleteCardRegistration"/>
+            <wsdl:output message="tns:deleteCardRegistrationResponse" wsaw:Action="urn:deleteCardRegistrationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedCardStatus">
+            <wsdl:input message="tns:getExtendedCardStatusRequest" wsaw:Action="urn:getExtendedCardStatus"/>
+            <wsdl:output message="tns:getExtendedCardStatusResponse" wsaw:Action="urn:getExtendedCardStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="setAutoPayment">
+            <wsdl:input message="tns:setAutoPaymentRequest" wsaw:Action="urn:setAutoPayment"/>
+            <wsdl:output message="tns:setAutoPaymentResponse" wsaw:Action="urn:setAutoPaymentResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedPaymentStatus">
+            <wsdl:input message="tns:getExtendedPaymentStatusRequest" wsaw:Action="urn:getExtendedPaymentStatus"/>
+            <wsdl:output message="tns:getExtendedPaymentStatusResponse" wsaw:Action="urn:getExtendedPaymentStatusResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="storeCardByCustomerReference">
+            <wsdl:input message="tns:storeCardByCustomerReferenceRequest" wsaw:Action="urn:storeCardByCustomerReference"/>
+            <wsdl:output message="tns:storeCardByCustomerReferenceResponse" wsaw:Action="urn:storeCardByCustomerReferenceResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteRegistration">
+            <wsdl:input message="tns:deleteRegistrationRequest" wsaw:Action="urn:deleteRegistration"/>
+            <wsdl:output message="tns:deleteRegistrationResponse" wsaw:Action="urn:deleteRegistrationResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CNPOneClickMerchantWebServiceSoap11Binding" type="tns:CNPOneClickMerchantWebServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getPrivateOfficeUrl">
+            <soap:operation soapAction="urn:getPrivateOfficeUrl" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="completePayment">
+            <soap:operation soapAction="urn:completePayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getPaymentStatus">
+            <soap:operation soapAction="urn:getPaymentStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="completeCardRegistration">
+            <soap:operation soapAction="urn:completeCardRegistration" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCardStatus">
+            <soap:operation soapAction="urn:getCardStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <soap:operation soapAction="urn:pay" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDeclineDescription">
+            <soap:operation soapAction="urn:getDeclineDescription" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cashout">
+            <soap:operation soapAction="urn:cashout" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="startCardRegistration">
+            <soap:operation soapAction="urn:startCardRegistration" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteCardRegistration">
+            <soap:operation soapAction="urn:deleteCardRegistration" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedCardStatus">
+            <soap:operation soapAction="urn:getExtendedCardStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAutoPayment">
+            <soap:operation soapAction="urn:setAutoPayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedPaymentStatus">
+            <soap:operation soapAction="urn:getExtendedPaymentStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="storeCardByCustomerReference">
+            <soap:operation soapAction="urn:storeCardByCustomerReference" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteRegistration">
+            <soap:operation soapAction="urn:deleteRegistration" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CNPOneClickMerchantWebServiceSoap12Binding" type="tns:CNPOneClickMerchantWebServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getPrivateOfficeUrl">
+            <soap12:operation soapAction="urn:getPrivateOfficeUrl" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="completePayment">
+            <soap12:operation soapAction="urn:completePayment" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getPaymentStatus">
+            <soap12:operation soapAction="urn:getPaymentStatus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="completeCardRegistration">
+            <soap12:operation soapAction="urn:completeCardRegistration" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCardStatus">
+            <soap12:operation soapAction="urn:getCardStatus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <soap12:operation soapAction="urn:pay" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDeclineDescription">
+            <soap12:operation soapAction="urn:getDeclineDescription" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cashout">
+            <soap12:operation soapAction="urn:cashout" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="startCardRegistration">
+            <soap12:operation soapAction="urn:startCardRegistration" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteCardRegistration">
+            <soap12:operation soapAction="urn:deleteCardRegistration" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedCardStatus">
+            <soap12:operation soapAction="urn:getExtendedCardStatus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAutoPayment">
+            <soap12:operation soapAction="urn:setAutoPayment" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedPaymentStatus">
+            <soap12:operation soapAction="urn:getExtendedPaymentStatus" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="storeCardByCustomerReference">
+            <soap12:operation soapAction="urn:storeCardByCustomerReference" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteRegistration">
+            <soap12:operation soapAction="urn:deleteRegistration" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="CNPOneClickMerchantWebServiceHttpBinding" type="tns:CNPOneClickMerchantWebServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getPrivateOfficeUrl">
+            <http:operation location="getPrivateOfficeUrl"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="completePayment">
+            <http:operation location="completePayment"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getPaymentStatus">
+            <http:operation location="getPaymentStatus"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="completeCardRegistration">
+            <http:operation location="completeCardRegistration"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCardStatus">
+            <http:operation location="getCardStatus"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pay">
+            <http:operation location="pay"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDeclineDescription">
+            <http:operation location="getDeclineDescription"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cashout">
+            <http:operation location="cashout"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="startCardRegistration">
+            <http:operation location="startCardRegistration"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteCardRegistration">
+            <http:operation location="deleteCardRegistration"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedCardStatus">
+            <http:operation location="getExtendedCardStatus"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="setAutoPayment">
+            <http:operation location="setAutoPayment"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExtendedPaymentStatus">
+            <http:operation location="getExtendedPaymentStatus"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="storeCardByCustomerReference">
+            <http:operation location="storeCardByCustomerReference"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteRegistration">
+            <http:operation location="deleteRegistration"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CNPOneClickMerchantWebService">
+        <wsdl:port name="CNPOneClickMerchantWebServiceHttpsSoap11Endpoint" binding="tns:CNPOneClickMerchantWebServiceSoap11Binding">
+            <soap:address location="https://test.processing.kz:8443/CNPOneClickMerchantWebServices/services/CNPOneClickMerchantWebService.CNPOneClickMerchantWebServiceHttpsSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="CNPOneClickMerchantWebServiceHttpSoap11Endpoint" binding="tns:CNPOneClickMerchantWebServiceSoap11Binding">
+            <soap:address location="http://test.processing.kz:8080/CNPOneClickMerchantWebServices/services/CNPOneClickMerchantWebService.CNPOneClickMerchantWebServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="CNPOneClickMerchantWebServiceHttpsSoap12Endpoint" binding="tns:CNPOneClickMerchantWebServiceSoap12Binding">
+            <soap12:address location="https://test.processing.kz:8443/CNPOneClickMerchantWebServices/services/CNPOneClickMerchantWebService.CNPOneClickMerchantWebServiceHttpsSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="CNPOneClickMerchantWebServiceHttpSoap12Endpoint" binding="tns:CNPOneClickMerchantWebServiceSoap12Binding">
+            <soap12:address location="http://test.processing.kz:8080/CNPOneClickMerchantWebServices/services/CNPOneClickMerchantWebService.CNPOneClickMerchantWebServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="CNPOneClickMerchantWebServiceHttpsEndpoint" binding="tns:CNPOneClickMerchantWebServiceHttpBinding">
+            <http:address location="https://test.processing.kz:8443/CNPOneClickMerchantWebServices/services/CNPOneClickMerchantWebService.CNPOneClickMerchantWebServiceHttpsEndpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="CNPOneClickMerchantWebServiceHttpEndpoint" binding="tns:CNPOneClickMerchantWebServiceHttpBinding">
+            <http:address location="http://test.processing.kz:8080/CNPOneClickMerchantWebServices/services/CNPOneClickMerchantWebService.CNPOneClickMerchantWebServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
