@@ -5,6 +5,7 @@ describe CnpOneClick::CardRegistrationStart do
   describe '#new' do
 
     before do
+
       CnpOneClick.configure(
         merchant_id: '777000000000018',
         language_code: 'en',
@@ -24,6 +25,7 @@ describe CnpOneClick::CardRegistrationStart do
 
     context 'when all required params are presented' do
       it 'returns url for registration new card' do
+        stub_start_card_registration_request
         expect(described_class.new(return_u_r_l: ':3000', user_login: 'test@test.io').redirect_url).to start_with('https://test.processing.kz/CNPConsumerWebsite/RequestCardholderDetails')
       end
     end
