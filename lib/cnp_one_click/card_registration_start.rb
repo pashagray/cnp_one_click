@@ -8,13 +8,14 @@ module CnpOneClick
     REQUIRED_PARAMS  = %i(merchant_id user_login language_code return_u_r_l wsdl endpoint)
     RESPONSE_PARAMS  = %i(success redirect_url error_code error_description user_id)
 
-    attr_reader :params
+    attr_reader *(PERMITTED_PARAMS + RESPONSE_PARAMS)
 
     def initialize(params = {})
-      @params = CnpOneClick.config
-                           .to_h
-                           .merge(params)
-                           .select{ |param| PERMITTED_PARAMS.include?(param) }
+      CnpOneClick.config
+                 .to_h
+                 .merge(params)
+                 .select { |p| PERMITTED_PARAMS.include?(p) }
+                 .each { |p| instance_variable_set("@#{p[0]}", p[1])}
       if missing_params.any?
         raise StandardError, "#{missing_params} is required, but not set"
       else
@@ -23,22 +24,21 @@ module CnpOneClick
     end
 
     def missing_params
-      REQUIRED_PARAMS.reject { |param| params.include?(param) }
+      REQUIRED_PARAMS - REQUIRED_PARAMS.map { |p| p.to_sym if send(p) }
+    end
+
+    def hash_to_send
+      PERMITTED_PARAMS.map { |p| [p, send(p)] }.to_h
     end
 
     def request!
-      client = Savon.client(wsdl: params[:wsdl], soap_version: 2, endpoint: params[:endpoint])
-      request = client.call(:start_card_registration,
-                            message: { registration: params.reject { |p| [:wsdl, :endpoint].include?(p) } })
+      client = Savon.client(wsdl: wsdl, soap_version: 2, endpoint: endpoint)
+      request = client.call(:start_card_registration, message: { registration: hash_to_send })
       response(request.body[:start_card_registration_response][:return])
     end
 
     def response(args = {})
-      @params = @params.merge(args)
-    end
-
-    def redirect_url
-      params[:redirect_url]
+      args.each { |p| instance_variable_set("@#{p[0]}", p[1]) if respond_to?(p[0])}
     end
   end
 end
