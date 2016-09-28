@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:getPaymentStatusResponse xmlns:ns="http://kz.processing.cnp.oneclick.merchant_ws/xsd">
+      <ns:return xmlns:ax21="http://beans.merchant.oneclick.cnp.processing.kz/xsd" xmlns:ax24="http://beans.common.cnp.processing.kz/xsd" xmlns:ax23="http://beans.oneclick.cnp.processing.kz/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax24:StoredTransactionStatusCode">
+        <ax24:additionalInformation xsi:type="ax24:AdditionalInformation">
+          <ax24:key>USER_ID</ax24:key>
+          <ax24:value>3381</ax24:value>
+        </ax24:additionalInformation>
+        <ax24:additionalInformation xsi:type="ax24:AdditionalInformation">
+          <ax24:key>PASSWORD</ax24:key>
+          <ax24:value>eRbsiI</ax24:value>
+        </ax24:additionalInformation>
+        <ax24:amountAuthorised>2100</ax24:amountAuthorised>
+        <ax24:amountRefunded>0</ax24:amountRefunded>
+        <ax24:amountRequested>2100</ax24:amountRequested>
+        <ax24:amountSettled>0</ax24:amountSettled>
+        <ax24:authCode xsi:nil="true" />
+        <ax24:bankRRN>627177000372</ax24:bankRRN>
+        <ax24:goods xsi:nil="true" />
+        <ax24:issuerBank>KKB</ax24:issuerBank>
+        <ax24:merchantLocalDateTime>27.09.2016 17:35:23</ax24:merchantLocalDateTime>
+        <ax24:merchantOnlineAddress xsi:nil="true" />
+        <ax24:orderId xsi:nil="true" />
+        <ax24:purchaserEmail xsi:nil="true" />
+        <ax24:purchaserName xsi:nil="true" />
+        <ax24:purchaserPhone xsi:nil="true" />
+        <ax24:rspCode>00</ax24:rspCode>
+        <ax24:rspCodeDesc></ax24:rspCodeDesc>
+        <ax24:sinkNode>SimSink</ax24:sinkNode>
+        <ax24:transactionCurrencyCode xsi:nil="true" />
+        <ax24:transactionStatus>AUTHORISED</ax24:transactionStatus>
+      </ns:return>
+    </ns:getPaymentStatusResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
