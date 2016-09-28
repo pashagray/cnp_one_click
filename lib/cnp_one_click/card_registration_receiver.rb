@@ -5,6 +5,7 @@ module CnpOneClick
 
     def initialize(http_xml_body)
       xml_doc = Nokogiri::XML(http_xml_body)
+      @type        = :reg_card
       @user_login  = xml_doc.css('notice userLogin').text
       @user_id     = xml_doc.css('notice userId').text
       @card_id     = xml_doc.css('notice cardId').text
