@@ -36,8 +36,8 @@ module CnpOneClick
       response(request.body[:get_card_status_response][:return])
     end
 
-    def response(true_or_false)
-      @success = true_or_false
+    def response(args = {})
+      args.each { |p| instance_variable_set("@#{p[0]}", p[1]) if respond_to?(p[0])}
     end
   end
 end
