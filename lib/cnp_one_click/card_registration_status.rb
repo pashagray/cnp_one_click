@@ -5,7 +5,7 @@ module CnpOneClick
 
     PERMITTED_PARAMS = %i(merchant_id user_id card_id wsdl endpoint)
     REQUIRED_PARAMS  = %i(merchant_id user_id card_id wsdl endpoint)
-    RESPONSE_PARAMS  = %i(user_id card_id user_login pan_masked cardholder status)
+    RESPONSE_PARAMS  = %i(user_id card_id user_login pan_masked card_holder unique_card_id status)
 
     attr_reader *(PERMITTED_PARAMS + RESPONSE_PARAMS)
 
